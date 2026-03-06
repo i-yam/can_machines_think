@@ -12,8 +12,9 @@ Live: [i-yam.github.io/can_machines_think](https://i-yam.github.io/can_machines_
 - Interactive: The Analogy Game — drag-and-drop card sorting with a password-protected reveal
 - Reading: supervised / unsupervised / reinforcement learning taxonomy
 - Reading: weak AI vs strong AI (Heinlein)
-- Closing reflection prompt
+- Closing reflection
 
 ## Usage in class
 
 Used in **Class 1** as a pre-class or in-class mini-module, followed by the *What Is Intelligence?* group discussion.
+
