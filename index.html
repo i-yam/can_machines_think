@@ -490,9 +490,46 @@
             border: 1px solid #2a2a40;
             border-radius: 12px;
             padding: 32px 36px;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
         }
 
-        .carousel-card.active { display: block; }
+        .carousel-card.active {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Left / right click zones overlaid on the card */
+        .carousel-card::before,
+        .carousel-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30%;
+            z-index: 1;
+        }
+        .carousel-card::before { left: 0; border-radius: 12px 0 0 12px; }
+        .carousel-card::after  { right: 0; border-radius: 0 12px 12px 0; }
+
+        /* Arrow hints on hover */
+        .carousel-card .arrow-hint {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            color: rgba(255,255,255,0);
+            transition: color 0.2s;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .carousel-card .arrow-left  { left: 14px; }
+        .carousel-card .arrow-right { right: 14px; }
+        .carousel-card:hover .arrow-left  { color: rgba(255,255,255,0.2); }
+        .carousel-card:hover .arrow-right { color: rgba(255,255,255,0.2); }
 
         .carousel-card h3 {
             font-size: 22px;
@@ -500,13 +537,12 @@
             margin: 0 0 16px;
         }
 
-        .carousel-card p {
-            margin-bottom: 0;
-        }
+        .carousel-card p { margin-bottom: 0; }
 
         .carousel-image {
             margin-top: 24px;
             text-align: center;
+            pointer-events: none;
         }
 
         .carousel-image img {
@@ -575,8 +611,7 @@
     <div class="tags">
         <span class="tag">all</span>
         <span class="tag">no-code</span>
-        <span class="tag">~20 min</span>
-        <span class="tag">mini-module</span>
+<span class="tag">mini-module</span>
         <span class="tag">try-without-ai</span>
         <span class="tag">ml-fundamentals</span>
     </div>
@@ -611,31 +646,41 @@
 
     <div class="carousel" id="s1-carousel">
 
-        <div class="carousel-card active">
+        <div class="carousel-card active" onclick="carouselClick(event)">
+            <span class="arrow-hint arrow-left">‹</span>
+            <span class="arrow-hint arrow-right">›</span>
             <h3 data-i18n="s1.c1.title">Psychologists</h3>
             <p data-i18n="s1.c1.text">Measure it through standardized tests: abstract reasoning, pattern recognition, problem-solving, adaptation to novel situations. The IQ score is this tradition's most famous — and most contested — product. It captures something. Exactly what is still debated.</p>
             <div class="carousel-image"><img src="images/psychologists.jpg" alt=""></div>
         </div>
 
-        <div class="carousel-card">
+        <div class="carousel-card" onclick="carouselClick(event)">
+            <span class="arrow-hint arrow-left">‹</span>
+            <span class="arrow-hint arrow-right">›</span>
             <h3 data-i18n="s1.c2.title">Neuroscientists</h3>
             <p data-i18n="s1.c2.text">Study the brain directly: the architecture of cortical regions, the patterns of neural activity, the chemistry of synaptic connections. They can map every neuron in a worm and still not fully explain how it moves. Intelligence, it turns out, is hard to find even when you are looking at the hardware.</p>
             <div class="carousel-image"><img src="images/neuroscience.jpg" alt=""></div>
         </div>
 
-        <div class="carousel-card">
+        <div class="carousel-card" onclick="carouselClick(event)">
+            <span class="arrow-hint arrow-left">‹</span>
+            <span class="arrow-hint arrow-right">›</span>
             <h3 data-i18n="s1.c3.title">Evolutionary Biologists</h3>
             <p data-i18n="s1.c3.text">Care about adaptability — the capacity to survive and reproduce in an environment that keeps changing its rules. Intelligence, in this view, is whatever helps an organism respond flexibly to a world it cannot fully predict. Tool use, social coordination, planning ahead: these evolved because they worked.</p>
             <div class="carousel-image"><img src="images/evolution.jpg" alt=""></div>
         </div>
 
-        <div class="carousel-card">
+        <div class="carousel-card" onclick="carouselClick(event)">
+            <span class="arrow-hint arrow-left">‹</span>
+            <span class="arrow-hint arrow-right">›</span>
             <h3 data-i18n="s1.c4.title">Philosophers</h3>
             <p data-i18n="s1.c4.text">Have argued about it since Aristotle. Is intelligence the capacity for reason? For language? For self-reflection? For moral judgment? Each answer excludes something inconvenient: animals that clearly solve problems, infants that clearly learn, people whose intelligence expresses itself in ways no test reaches.</p>
             <div class="carousel-image"><img src="images/philosophy.jpg" alt=""></div>
         </div>
 
-        <div class="carousel-card">
+        <div class="carousel-card" onclick="carouselClick(event)">
+            <span class="arrow-hint arrow-left">‹</span>
+            <span class="arrow-hint arrow-right">›</span>
             <h3 data-i18n="s1.c5.title">Computer Scientists & AI Researchers</h3>
             <p data-i18n="s1.c5.text">Took a more pragmatic route. If a system <em>behaves</em> intelligently — if you cannot tell it apart from a human in conversation — does the internal mechanism matter? This is the position Turing took in 1950. His answer to the philosophical argument was to sidestep it entirely and ask a different question.</p>
             <div class="carousel-image"><img src="images/computerscience.jpg" alt=""></div>
@@ -991,6 +1036,31 @@ function carouselMove(dir) {
     document.getElementById('carousel-prev').disabled = carouselIdx === 0;
     document.getElementById('carousel-next').disabled = carouselIdx === cards.length - 1;
 }
+
+function carouselClick(e) {
+    const card = e.currentTarget;
+    const x = e.clientX - card.getBoundingClientRect().left;
+    const cards = document.querySelectorAll('#s1-carousel .carousel-card');
+    if (x < card.offsetWidth / 2) {
+        if (carouselIdx > 0) carouselMove(-1);
+    } else {
+        if (carouselIdx < cards.length - 1) carouselMove(1);
+    }
+}
+
+// Swipe support
+(function() {
+    let tx = 0;
+    const el = document.getElementById('s1-carousel');
+    el.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+    el.addEventListener('touchend', function(e) {
+        const dx = e.changedTouches[0].clientX - tx;
+        if (Math.abs(dx) < 40) return;
+        const cards = document.querySelectorAll('#s1-carousel .carousel-card');
+        if (dx < 0 && carouselIdx < cards.length - 1) carouselMove(1);
+        if (dx > 0 && carouselIdx > 0) carouselMove(-1);
+    }, { passive: true });
+})();
 
 // ─── Card ID lists for reset ─────────────────────────────────────────────────
 const analogyCards   = ['card-atom','card-corn','card-nerve','card-solar','card-tape','card-curriculum','card-radioactive','card-dna','card-ballot'];
