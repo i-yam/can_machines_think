@@ -16,5 +16,6 @@ Live: [i-yam.github.io/can_machines_think](https://i-yam.github.io/can_machines_
 
 ## Usage in class
 
-Used in **Class 1** as a pre-class or in-class mini-module, followed by the *What Is Intelligence?* group discussion.
+Used in **Class 1** as an in-class mini-module, followed by the *What Is Intelligence?* group discussion.
+
 
