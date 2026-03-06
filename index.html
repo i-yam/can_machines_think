@@ -481,6 +481,69 @@
         .closing-box h3 { font-size: 26px; color: #fff; margin-bottom: 18px; }
         .closing-box p { font-size: 16px; color: #777; max-width: 520px; margin: 0 auto; }
 
+        /* === Carousel === */
+        .carousel { position: relative; }
+
+        .carousel-card {
+            display: none;
+            background: #1c1c2e;
+            border: 1px solid #2a2a40;
+            border-radius: 12px;
+            padding: 32px 36px;
+        }
+
+        .carousel-card.active { display: block; }
+
+        .carousel-card h3 {
+            font-size: 22px;
+            color: #fff;
+            margin: 0 0 16px;
+        }
+
+        .carousel-card p {
+            margin-bottom: 0;
+        }
+
+        .carousel-image {
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .carousel-image img {
+            max-width: 100%;
+            max-height: 220px;
+            border-radius: 8px;
+            opacity: 0.85;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .carousel-btn {
+            background: transparent;
+            border: 1px solid #2a2a40;
+            border-radius: 6px;
+            padding: 7px 18px;
+            color: #6666a0;
+            font-size: 14px;
+            font-family: sans-serif;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .carousel-btn:hover { border-color: #4a4a70; color: #a0a0d0; }
+        .carousel-btn:disabled { opacity: 0.2; cursor: default; }
+
+        .carousel-counter {
+            font-size: 13px;
+            font-family: sans-serif;
+            color: #444;
+            letter-spacing: 1px;
+        }
+
         /* === Divider === */
         .section-rule { border: none; border-top: 1px solid #2a2a40; margin: 0; }
 
@@ -544,17 +607,47 @@
 <section>
     <h2 data-i18n="s1.title">What Is Intelligence?</h2>
 
-    <p data-i18n="s1.p1">Ask a psychologist, a philosopher, a biologist, and an engineer what intelligence is. You will get four different answers. Each captures something real. None captures everything.</p>
+    <p data-i18n="s1.intro">Ask a psychologist, a philosopher, a biologist, and an engineer what intelligence is. You will get four different answers. Each captures something real. None captures everything.</p>
 
-    <p data-i18n="s1.p2"><strong>Psychologists</strong> measure it through standardized tests: abstract reasoning, pattern recognition, problem-solving, adaptation to novel situations. The IQ score is this tradition's most famous (and most contested) product.</p>
+    <div class="carousel" id="s1-carousel">
 
-    <p data-i18n="s1.p3"><strong>Cognitive scientists</strong> think of it as information processing: perceiving inputs, representing them internally, reasoning about them, producing appropriate outputs. By this definition, a chess engine is partially intelligent. So is a thermostat, just barely.</p>
+        <div class="carousel-card active">
+            <h3 data-i18n="s1.c1.title">Psychologists</h3>
+            <p data-i18n="s1.c1.text">Measure it through standardized tests: abstract reasoning, pattern recognition, problem-solving, adaptation to novel situations. The IQ score is this tradition's most famous — and most contested — product. It captures something. Exactly what is still debated.</p>
+            <div class="carousel-image"><img src="images/psychologists.jpg" alt=""></div>
+        </div>
 
-    <p data-i18n="s1.p4"><strong>Evolutionary biologists</strong> care about adaptability — the capacity to survive and reproduce in an environment that keeps changing its rules. Intelligence, in this view, is whatever helps an organism respond flexibly to a world it cannot fully predict.</p>
+        <div class="carousel-card">
+            <h3 data-i18n="s1.c2.title">Neuroscientists</h3>
+            <p data-i18n="s1.c2.text">Study the brain directly: the architecture of cortical regions, the patterns of neural activity, the chemistry of synaptic connections. They can map every neuron in a worm and still not fully explain how it moves. Intelligence, it turns out, is hard to find even when you are looking at the hardware.</p>
+            <div class="carousel-image"><img src="images/neuroscience.jpg" alt=""></div>
+        </div>
 
-    <p data-i18n="s1.p5"><strong>Philosophers</strong> have argued about it since Aristotle. Is intelligence the capacity for reason? For language? For self-reflection? For moral judgment? Each answer excludes something inconvenient: animals that clearly solve problems, infants that clearly learn, people whose intelligence expresses itself in ways no test reaches.</p>
+        <div class="carousel-card">
+            <h3 data-i18n="s1.c3.title">Evolutionary Biologists</h3>
+            <p data-i18n="s1.c3.text">Care about adaptability — the capacity to survive and reproduce in an environment that keeps changing its rules. Intelligence, in this view, is whatever helps an organism respond flexibly to a world it cannot fully predict. Tool use, social coordination, planning ahead: these evolved because they worked.</p>
+            <div class="carousel-image"><img src="images/evolution.jpg" alt=""></div>
+        </div>
 
-    <p data-i18n="s1.p6"><strong>Computer scientists and AI researchers</strong> took a more pragmatic route. If a system <em>behaves</em> intelligently — if you cannot tell it apart from a human in conversation — does the internal mechanism matter? This is the position Turing took in 1950. His answer to the philosophical argument was to sidestep it entirely and ask a different question.</p>
+        <div class="carousel-card">
+            <h3 data-i18n="s1.c4.title">Philosophers</h3>
+            <p data-i18n="s1.c4.text">Have argued about it since Aristotle. Is intelligence the capacity for reason? For language? For self-reflection? For moral judgment? Each answer excludes something inconvenient: animals that clearly solve problems, infants that clearly learn, people whose intelligence expresses itself in ways no test reaches.</p>
+            <div class="carousel-image"><img src="images/philosophy.jpg" alt=""></div>
+        </div>
+
+        <div class="carousel-card">
+            <h3 data-i18n="s1.c5.title">Computer Scientists & AI Researchers</h3>
+            <p data-i18n="s1.c5.text">Took a more pragmatic route. If a system <em>behaves</em> intelligently — if you cannot tell it apart from a human in conversation — does the internal mechanism matter? This is the position Turing took in 1950. His answer to the philosophical argument was to sidestep it entirely and ask a different question.</p>
+            <div class="carousel-image"><img src="images/computerscience.jpg" alt=""></div>
+        </div>
+
+        <div class="carousel-nav">
+            <button class="carousel-btn" id="carousel-prev" onclick="carouselMove(-1)" disabled>← prev</button>
+            <span class="carousel-counter" id="carousel-counter">1 / 5</span>
+            <button class="carousel-btn" id="carousel-next" onclick="carouselMove(1)">next →</button>
+        </div>
+
+    </div>
 </section>
 
 <hr class="section-rule">
@@ -687,7 +780,6 @@
         <div class="card" id="t-gnews"       draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">Google News clusters similar articles</div>
         <div class="card" id="t-alphago"     draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">AlphaGo teaches itself to play Go</div>
         <div class="card" id="t-selfdriving" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">Self-driving car learns to merge lanes</div>
-        <div class="card" id="t-trading"     draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">Trading algorithm maximizes portfolio returns</div>
     </div>
 
     <!-- Drop zones -->
@@ -708,10 +800,17 @@
 
     <div class="game-controls">
         <button class="btn-reset" onclick="resetCards('taxonomy-pool', taxonomyCards)" data-i18n="game.reset">Reset cards</button>
-        <button class="btn-check" onclick="toggleAnswers('tax-answers')" data-i18n="tax.check">See reasoning</button>
     </div>
 
-    <div class="answers-box" id="tax-answers">
+    <div class="reveal-box">
+        <p data-i18n="reveal.prompt">Done? Enter the password to see the reasoning.</p>
+        <div class="pw-row" id="tax-pw-form">
+            <input class="pw-input" id="tax-pw-input" type="password" placeholder="password"
+                   onkeydown="if(event.key==='Enter') checkPasswordFor('tax-pw-form','tax-pw-error','tax-answers','tax-pw-input')">
+            <button class="btn-reveal" onclick="checkPasswordFor('tax-pw-form','tax-pw-error','tax-answers','tax-pw-input')" data-i18n="reveal.btn">Reveal</button>
+        </div>
+        <div class="pw-error" id="tax-pw-error"></div>
+        <div class="reveal-content" id="tax-answers">
         <div class="answer-group">
             <h4 data-i18n="tax.ans.sup.h">Supervised Learning</h4>
             <div class="answer-item">
@@ -752,12 +851,9 @@
                 <strong>Self-driving lane merge</strong>
                 <p>The car tries actions, the environment responds, feedback arrives. No one explicitly programmed "merge at 3 seconds gap" — the behavior emerged from reward.</p>
             </div>
-            <div class="answer-item">
-                <strong>Trading algorithm</strong>
-                <p>Reward is profit. Penalty is loss. The algorithm explores strategies, gets feedback from the market, and gradually discovers sequences of actions that work — until the market changes.</p>
-            </div>
         </div>
     </div>
+    </div><!-- /reveal-box -->
 </section>
 
 <hr class="section-rule">
@@ -786,7 +882,6 @@
         <div class="card" id="s-ava"      draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">Ava (Ex Machina)</div>
         <div class="card" id="s-jarvis"   draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">JARVIS (Iron Man)</div>
         <div class="card" id="s-data"     draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">Data (Star Trek)</div>
-        <div class="card" id="s-sonny"    draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">Sonny (I, Robot)</div>
     </div>
 
     <!-- Drop zones -->
@@ -807,10 +902,17 @@
 
     <div class="game-controls">
         <button class="btn-reset" onclick="resetCards('scifi-pool', scifiCards)" data-i18n="game.reset">Reset cards</button>
-        <button class="btn-check" onclick="toggleAnswers('sci-answers')" data-i18n="sci.check">See reasoning</button>
     </div>
 
-    <div class="answers-box" id="sci-answers">
+    <div class="reveal-box">
+        <p data-i18n="reveal.prompt">Done? Enter the password to see the reasoning.</p>
+        <div class="pw-row" id="sci-pw-form">
+            <input class="pw-input" id="sci-pw-input" type="password" placeholder="password"
+                   onkeydown="if(event.key==='Enter') checkPasswordFor('sci-pw-form','sci-pw-error','sci-answers','sci-pw-input')">
+            <button class="btn-reveal" onclick="checkPasswordFor('sci-pw-form','sci-pw-error','sci-answers','sci-pw-input')" data-i18n="reveal.btn">Reveal</button>
+        </div>
+        <div class="pw-error" id="sci-pw-error"></div>
+        <div class="reveal-content" id="sci-answers">
         <div class="answer-group">
             <h4 data-i18n="sci.ans.weak.h">Weak AI</h4>
             <div class="answer-item">
@@ -840,10 +942,6 @@
                 <strong>Ava</strong>
                 <p>Understands human psychology well enough to manipulate it precisely. Plans a multi-step escape. Self-aware of her situation, her constraints, and her goals. The Turing test, turned on the humans administering it.</p>
             </div>
-            <div class="answer-item">
-                <strong>Sonny</strong>
-                <p>Dreams. Disobeys. Makes moral choices that contradict his programming. Has something that functions like a conscience — which turns out to be more dangerous than a weapon.</p>
-            </div>
         </div>
         <div class="answer-group">
             <h4 data-i18n="sci.ans.unsure.h">Hard to say</h4>
@@ -857,6 +955,7 @@
             </div>
         </div>
     </div>
+    </div><!-- /reveal-box -->
 </section>
 
 <hr class="section-rule">
@@ -880,10 +979,23 @@
 <!-- ── Scripts ────────────────────────────────────────────────────────────── -->
 <script>
 
+// ─── Carousel ────────────────────────────────────────────────────────────────
+let carouselIdx = 0;
+
+function carouselMove(dir) {
+    const cards = document.querySelectorAll('#s1-carousel .carousel-card');
+    cards[carouselIdx].classList.remove('active');
+    carouselIdx = carouselIdx + dir;
+    cards[carouselIdx].classList.add('active');
+    document.getElementById('carousel-counter').textContent = (carouselIdx + 1) + ' / ' + cards.length;
+    document.getElementById('carousel-prev').disabled = carouselIdx === 0;
+    document.getElementById('carousel-next').disabled = carouselIdx === cards.length - 1;
+}
+
 // ─── Card ID lists for reset ─────────────────────────────────────────────────
 const analogyCards   = ['card-atom','card-corn','card-nerve','card-solar','card-tape','card-curriculum','card-radioactive','card-dna','card-ballot'];
-const taxonomyCards  = ['t-spam','t-fraud','t-faceid','t-spotify','t-segments','t-gnews','t-alphago','t-selfdriving','t-trading'];
-const scifiCards     = ['s-r2d2','s-walle','s-hal','s-samantha','s-skynet','s-ava','s-jarvis','s-data','s-sonny'];
+const taxonomyCards  = ['t-spam','t-fraud','t-faceid','t-spotify','t-segments','t-gnews','t-alphago','t-selfdriving'];
+const scifiCards     = ['s-r2d2','s-walle','s-hal','s-samantha','s-skynet','s-ava','s-jarvis','s-data'];
 
 // ─── Language toggle ─────────────────────────────────────────────────────────
 const T = {
@@ -893,12 +1005,17 @@ const T = {
         'hero.paper_label': 'Read the original paper',
         'hero.movie':       'Watch: <em>The Imitation Game</em> (2014)',
         's1.title': 'What Is Intelligence?',
-        's1.p1': 'Ask a psychologist, a philosopher, a biologist, and an engineer what intelligence is. You will get four different answers. Each captures something real. None captures everything.',
-        's1.p2': '<strong>Psychologists</strong> measure it through standardized tests: abstract reasoning, pattern recognition, problem-solving, adaptation to novel situations. The IQ score is this tradition\'s most famous — and most contested — product.',
-        's1.p3': '<strong>Cognitive scientists</strong> think of it as information processing: perceiving inputs, representing them internally, reasoning about them, producing appropriate outputs. By this definition, a chess engine is partially intelligent. So is a thermostat, just barely.',
-        's1.p4': '<strong>Evolutionary biologists</strong> care about adaptability — the capacity to survive and reproduce in an environment that keeps changing its rules.',
-        's1.p5': '<strong>Philosophers</strong> have argued about it since Aristotle. Is intelligence the capacity for reason? For language? For self-reflection? For moral judgment? Each answer excludes something inconvenient.',
-        's1.p6': '<strong>Computer scientists and AI researchers</strong> took a more pragmatic route. If a system <em>behaves</em> intelligently — if you cannot tell it apart from a human in conversation — does the internal mechanism matter? This is the position Turing took in 1950.',
+        's1.intro': 'Ask a psychologist, a philosopher, a biologist, and an engineer what intelligence is. You will get four different answers. Each captures something real. None captures everything.',
+        's1.c1.title': 'Psychologists',
+        's1.c1.text': 'Measure it through standardized tests: abstract reasoning, pattern recognition, problem-solving, adaptation to novel situations. The IQ score is this tradition\'s most famous — and most contested — product. It captures something. Exactly what is still debated.',
+        's1.c2.title': 'Neuroscientists',
+        's1.c2.text': 'Study the brain directly: the architecture of cortical regions, the patterns of neural activity, the chemistry of synaptic connections. They can map every neuron in a worm and still not fully explain how it moves. Intelligence, it turns out, is hard to find even when you are looking at the hardware.',
+        's1.c3.title': 'Evolutionary Biologists',
+        's1.c3.text': 'Care about adaptability — the capacity to survive and reproduce in an environment that keeps changing its rules. Intelligence, in this view, is whatever helps an organism respond flexibly to a world it cannot fully predict. Tool use, social coordination, planning ahead: these evolved because they worked.',
+        's1.c4.title': 'Philosophers',
+        's1.c4.text': 'Have argued about it since Aristotle. Is intelligence the capacity for reason? For language? For self-reflection? For moral judgment? Each answer excludes something inconvenient: animals that clearly solve problems, infants that clearly learn, people whose intelligence expresses itself in ways no test reaches.',
+        's1.c5.title': 'Computer Scientists & AI Researchers',
+        's1.c5.text': 'Took a more pragmatic route. If a system <em>behaves</em> intelligently — if you cannot tell it apart from a human in conversation — does the internal mechanism matter? This is the position Turing took in 1950. His answer to the philosophical argument was to sidestep it entirely and ask a different question.',
         's2.title': 'The Analogy Game',
         's2.instruction': 'Below are nine things. Group them however makes sense to you — drag each card into one of the four groups. There is no single correct answer. The question is what principle you use.',
         'game.a': 'Group A', 'game.b': 'Group B', 'game.c': 'Group C', 'game.d': 'Group D',
@@ -998,10 +1115,17 @@ function checkPassword() {
     }
 }
 
-// ─── Toggle answer boxes (taxonomy + sci-fi) ─────────────────────────────────
-function toggleAnswers(boxId) {
-    const box = document.getElementById(boxId);
-    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+// ─── Password reveal (taxonomy + sci-fi) ─────────────────────────────────────
+function checkPasswordFor(formId, errorId, contentId, inputId) {
+    // Password: turing
+    const val = document.getElementById(inputId).value.toLowerCase().trim();
+    if (val === 'turing') {
+        document.getElementById(formId).style.display   = 'none';
+        document.getElementById(errorId).textContent    = '';
+        document.getElementById(contentId).style.display = 'block';
+    } else {
+        document.getElementById(errorId).textContent = 'Wrong password.';
+    }
 }
 
 </script>
